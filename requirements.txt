@@ -1,0 +1,4 @@
+python-telegram-bot==13.7
+SQLAlchemy==1.4.25
+asyncpg==0.23.0
+fuzzywuzzy==0.18.0
