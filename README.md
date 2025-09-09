@@ -1,74 +1,124 @@
-# 🏦 The Denome
+# Coop App Telegram Support Chatbot 🤖💬
 
-**The Denome** is a lightweight web-based tool that helps **bank tellers** manage cash quickly and accurately.  
-It supports two main workflows:
-
-1. **Cash Counting** – Enter the number of notes for each denomination, and the system instantly calculates the total sum.  
-2. **Cash Dispensing** – Input a withdrawal amount, and the system suggests how many **200, 100, 50, 10, 5, and 1 birr notes** to give to the customer.  
+The **Coop App Telegram Support Chatbot** is an intelligent customer support assistant built with Python.  
+It helps Coopbank customers and staff access essential services like branch and ATM locators, daily exchange rates, FAQs, and direct support — all within Telegram.  
 
 ---
 
 ## ✨ Features
 
-- 💵 Fast cash counting by denomination.  
-- 💳 Smart cash dispensing breakdown.  
-- 📅 Real-time date and time display.  
-- 🎨 Simple and intuitive UI.  
-- ⚡ Works entirely offline in the browser (no backend needed).  
+- 🌐 **Multi-language Support** — 3 languages, switch anytime.  
+- 🏦 **Branch & ATM Locator** — Quickly find the nearest Coopbank branch or ATM.  
+- 💱 **Daily Exchange Rates** — Get updated rates instantly.  
+- ❓ **Q&A Support** — The bot responds automatically to predefined and fuzzy-matched queries.  
+- 📞 **Support Contact Info** — Directly access Coopbank’s support details.  
+- 📢 **Broadcast Messaging**  
+  - Send announcements with or without images.  
+  - Delete broadcast messages from all users.  
+- 👤 **User Management**  
+  - Send targeted messages to specific users.  
+  - Delete messages sent by users.  
+- 📊 **Statistics** — Track bot usage and user engagement.  
+- 🛠️ **Extensible** — Built to grow with future needs.  
 
 ---
 
-## 📂 Project Structure
+## 🗂️ Directory Structure
 
+CoopAppTelegramBot/
+│── atm.json # ATM location data
+│── branch.json # Branch location data
+│── broadcast.json # Broadcast management
+│── env.txt # Environment variables (API keys, DB settings)
+│── log.txt # Logs (runtime activity)
+│── users.json # User tracking and metadata
+│── bot.py # Main bot application
+│── models.py # Database models (SQLAlchemy)
+│── requirements.txt # Python dependencies
+│── test_connection.py # Database connection test
+
+
+---
+
+## ⚙️ Requirements
+
+Create a `requirements.txt` with the following:  
+python-telegram-bot==13.7
+SQLAlchemy==1.4.25
+asyncpg==0.23.0
+fuzzywuzzy==0.18.0
+
+
+Install dependencies:  
+```bash
+pip install -r requirements.txt
 ```
-the-denome/
-│── coop.png          # Logo / image asset
-│── coopbank.jpg      # Background or branding image
-│── coopbanks.jpg     # Additional branding image
-│── index.htm         # Main application file
-│── side_bar.png      # Sidebar icon/image
-│── style.css         # Stylesheet (CSS)
-│── README.md         # Project documentation
+🚀 Getting Started
+
+Clone the repository:
+```
+git clone https://github.com/yourusername/CoopAppTelegramBot.git
+cd CoopAppTelegramBot
 ```
 
----
+Set up your environment variables in ```env.txt```:
+```
+TELEGRAM_API_KEY=your_telegram_api_key
+DATABASE_URL=postgresql+asyncpg://user:password@localhost/dbname
+ADMIN_ID= telegram id of admin
+```
 
-## 🚀 Getting Started
+Run the bot:
+```
+python bot.py
+```
+🌍 Usage Examples
 
-1. Clone or download this repository:
-   ```bash
-   git clone https://github.com/abditwayessa/theDenome.git
-   ```
-2. Open **`index.htm`** in your browser.  
-3. Start using the app:
-   - Enter note counts for **Cash Counting Mode**.  
-   - Enter withdrawal amount for **Cash Dispensing Mode**.  
+```/start``` → Welcome message and language selection.
 
----
+```/branch finfinne``` → Locate Coopbank Finfinne branches with their detail.
 
-## 🛠️ Built With
+```/atm finfinne``` → Locate Coopbank Finfinne branches ATM.
 
-- **HTML5** – App structure  
-- **CSS3** – Styling (`style.css`)  
-- **JavaScript** – Interactive logic (inside `index.htm`)  
+```/exchange``` → Get today’s exchange rates.
 
----
+```/contact_us``` → To get support contact details.
 
-## 📸 Screenshots (Optional)
+```/language``` → Change language(Supports ```Afaan Oromoo```, ```አማርኛ```, ```English```)
 
-You can add screenshots of your app using the included images (`coop.png`, `coopbank.jpg`, `coopbanks.jpg`).  
+Admins can:
 
----
+```/broadcastimage <message> <image_ur>``` → Send broadcast message text with image to all users.
 
-## 📌 Future Improvements
+```/broadcast <message>``` → Send broadcast message text only.
 
-- 🔐 Teller login system.  
-- 📊 Transaction history.  
-- 📱 Mobile responsive design.  
-- 🌐 Multi-currency support.  
+```/send <user_chat_id> <message>``` → Send message to specific users.
 
----
+```/delete <user_chat_id> <message_id>>``` → Delete message that sent to specific users.
 
-## 📜 License
+```/verify_broadcast``` → Verify broadcast message before it is sent to the users.
 
-This project is licensed under the **MIT License** – feel free to use, modify, and distribute.
+```/delete_broadcast``` → Delete broadcasted message.
+
+```/info``` → Get bot status
+
+
+🔒 Security & Privacy
+
+Only usrname and user id collected(To send broadcast and support specific users)
+
+Users interact anonymously unless they initiate contact.
+
+Broadcasts and logs are securely stored and managed.
+
+📌 Future Enhancements
+
+AI-powered natural language understanding (NLU).
+
+Integration with Coopbank’s core systems for real-time services.
+
+Advanced analytics dashboard for the support team.
+
+👨‍💻 Author
+
+Developed by Abdi T. Wayessa with ❤️ using Python & Telegram Bot API.
